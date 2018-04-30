@@ -20,9 +20,15 @@ body,
 }
 
 #root nav {
-  width: 0;
-  box-shadow: 0;
+  max-width: 300px;
+  box-shadow: none;
   background-color: #fff;
+}
+.todo-app-container {
+  display: flex;
+}
+.desktop-nav .sidenav .subheader {
+  font-size: 2rem;
 }
 
 .mobile-nav {
@@ -31,13 +37,133 @@ body,
 .mobile-nav h1 {
   text-align: center;
   margin: 0;
-  margin-right: 10%;
+}
+.dropdown-trigger {
+  position: absolute;
+  right: 1rem;
+  top: 0.2rem;
+}
+nav .mobile-nav .sidenav-trigger {
+  position: absolute;
+}
+.sidenav-arrow {
+  cursor: pointer;
+  pointer-events: auto;
+}
+.tasks-main-container {
+  position: relative;
+  margin: auto;
+}
+.divider-container {
+  display: flex;
+}
+.divider-container > div {
+  width: 300px;
+  height: 400px;
+  padding: 1rem;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.focus-container,
+.goals-container,
+.fitin-container,
+.backburner-container {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.focus-container {
+  background-color: #EF5452;
+}
+.goals-container {
+  background-color: #03a9f4;
+}
+.fitin-container {
+  background-color: #FCAE28;
+}
+.backburner-container {
+  background-color: #17BBA3;
+}
+
+.focus-container:hover {
+  background-color: rgba(239, 84, 82, 0.8);
+}
+.goals-container:hover {
+  background-color: rgba(3, 169, 244, 0.8);
+}
+.fitin-container:hover {
+  background-color: rgba(252, 174, 40, 0.8);
+}
+.backburner-container:hover {
+  background-color: rgba(23, 187, 163, 0.8);
+}
+.focus-container-title,
+.goals-container-title,
+.fitin-container-title,
+.backburner-container-title {
+  text-align: center;
+  font-weight: lighter;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  color: #efefef;
+}
+.focus-container-tasks-circle,
+.goals-container-tasks-circle,
+.fitin-container-tasks-circle,
+.backburner-container-tasks-circle {
+  position: relative;
+  width: 80%;
+  height: 55%;
+  border-radius: 50%;
+  margin: auto;
+  background-color: #efefef;
+  border: 1rem solid;
+}
+.focus-container-tasks-circle {
+  border-color: rgba(239, 84, 82, 0.8);
+}
+.goals-container-tasks-circle {
+  border-color: rgba(3, 169, 244, 0.8);
+}
+.fitin-container-tasks-circle {
+  border-color: rgba(252, 174, 40, 0.8);
+}
+.backburner-container-tasks-circle {
+  border-color: rgba(23, 187, 163, 0.8);
+}
+.tasks-main-container a.btn-floating.btn-large.waves-effect.waves-light.light-blue,
+.focus-container-tasks-circle-amount-container,
+.goals-container-tasks-circle-amount-container,
+.fitin-container-tasks-circle-amount-container,
+.backburner-container-tasks-circle-amount-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.focus-container-tasks-circle-amount-container h3,
+.goals-container-tasks-circle-amount-container h3,
+.fitin-container-tasks-circle-amount-container h3,
+.backburner-container-tasks-circle-amount-container h3 {
+  margin: 0;
+  font-size: 4rem;
+}
+.focus-container-tasks-circle-amount-container p,
+.goals-container-tasks-circle-amount-container p,
+.fitin-container-tasks-circle-amount-container p,
+.backburner-container-tasks-circle-amount-container p {
+  margin: 0;
+  color: #999;
 }
 
 @media screen and (max-width: 992px) {
-
+  .todo-app-container {
+    flex-direction: column;
+  }
   .mobile-nav {
     display: block;
+  }
+  nav h1 {
+    font-size: 3.2rem;
+    line-height: 64px
   }
   .desktop-nav {
     height: 0;
@@ -46,6 +172,7 @@ body,
   #root nav {
     height: 64px;
     width: 100%;
+    max-width: 100%;
     background-color: #039be5;
   }
 }
