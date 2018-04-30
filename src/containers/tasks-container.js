@@ -10,11 +10,17 @@ class TasksContainer extends Component {
       return(
         <div className="tasks-main-container">
           <div className="divider-container">
-            <FocusTasks />
-            <GoalsTasks />
+            <FocusTasks
+              tasks={this.props.focustasks}
+            />
+            <GoalsTasks
+              tasks={this.props.goalstasks}
+            />
           </div>
           <div className="divider-container">
-            <FitInTasks />
+            <FitInTasks
+              tasks={this.props.fitintasks}
+            />
             <BackBurnerTasks
               tasks={this.props.backburnertasks}
             />
@@ -27,6 +33,9 @@ class TasksContainer extends Component {
 
 function mapStateToProps(state) {
   return {
+    focustasks: state.focustasks,
+    goalstasks: state.goalstasks,
+    fitintasks: state.fitintasks,
     backburnertasks: state.backburnertasks
   };
 }

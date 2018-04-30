@@ -9,17 +9,16 @@ class BackBurnerTasks extends Component {
   }
 
   render() {
-    console.log(this.props.backburnertasks);
-    
+
     return (
       <div className="backburner-container" onClick={this.renderBackburnerView}>
         <BackBurnerTasksView
-
+          tasks={this.props.tasks}
         />
-        <h2 class="backburner-container-title">backburner</h2>
-        <div class="backburner-container-tasks-circle">
-          <div class="backburner-container-tasks-circle-amount-container">
-            <h3>0</h3>
+      <h2 className="backburner-container-title">backburner</h2>
+        <div className="backburner-container-tasks-circle">
+          <div className="backburner-container-tasks-circle-amount-container">
+            <h3>{this.props.tasks.length}</h3>
             <p>to go</p>
           </div>
         </div>
