@@ -9,7 +9,7 @@ class FocusTasks extends Component {
     this.state = {
       renderView: false
     }
-    //this.props.renderView = false;
+
   }
 
   renderTasksView() {

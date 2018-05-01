@@ -1,0 +1,21 @@
+// Media Query Manager
+/*
+0 - 425px: Phone Small
+0 - 600px: Phone
+601px - 700px: Phone landscape
+600 - 900px: Tablet portrait
+901 - 1000px: Tablet Small
+900 - 1200px: Tablet landscape
+
+$breakpoint arguement choices:
+- phone-small
+- phone
+- phone-land
+- tab-port
+- tab-land
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == nav-swap {
+    @media (max-width: 62em) { @content };
+  }
+}

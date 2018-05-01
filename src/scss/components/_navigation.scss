@@ -1,0 +1,59 @@
+nav.navigation {
+  max-width: 300px;
+  box-shadow: none;
+  background-color: #fff;
+
+  @include respond(nav-swap) {
+    height: 64px;
+    width: 100%;
+    max-width: 100%;
+    background-color: $color-primary;
+
+    h1 {
+      font-size: 3.2rem;
+      line-height: 64px;
+    }
+  }
+
+  & .desktop-nav {
+
+    & .sidenav .subheader {
+      font-size: 2rem;
+    }
+
+    & .sidenav-arrow {
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    @include respond(nav-swap) {
+      height: 0;
+    }
+
+  }
+
+  & .mobile-nav {
+    display: none;
+
+    @include respond(nav-swap) {
+      display: block;
+    }
+
+    & h1 {
+      text-align: center;
+      margin: 0;
+    }
+
+    & .dropdown-trigger {
+      position: absolute;
+      right: 1rem;
+      top: 0.2rem;
+    }
+
+    & .sidenav-trigger {
+      position: absolute;
+    }
+
+  }
+
+}

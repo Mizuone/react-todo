@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Navigation extends Component {
   render() {
     return (
-      <nav>
+      <nav className="navigation">
         <div className="desktop-nav">
           <ul id="slide-out" className="sidenav sidenav-fixed hoverable">
             <li><a href="#" className="subheader light-blue white-text"><i className="material-icons hide-on-large-only white-text sidenav-arrow">arrow_back</i>Todo</a></li>

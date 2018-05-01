@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 
 import './index.css';
+import './scss/main.scss';
 import NavigationTriggers from'./components/navigation/navigation_triggers/navigation_triggers';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
