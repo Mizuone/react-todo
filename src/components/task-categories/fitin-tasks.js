@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import FitInTasksView from './views/fitin-tasks-view';
+import FitInTasksView from '../../containers/fitin-tasks-view';
 
 class FitInTasks extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      renderView: false
+  renderTasksView(event) {
+    let fitinTasks = document.querySelector('.fitin-container .fitin-view');
+
+    if (!fitinTasks.classList.contains('expanded-view')) {
+
+      fitinTasks.classList.add('expanded-view');
+
+      setTimeout(() => {
+        document.getElementById('fitin-task').focus();
+      }, 250);
+
     }
 
   }
 
-  renderTasksView() {
-    this.setState({ renderView: true });
-  }
-
   render() {
     return (
-      <div className="fitin-container" onClick={this.renderTasksView.bind(this)}>
+      <div className="fitin-container" onClick={this.renderTasksView}>
         <FitInTasksView
           tasks={this.props.tasks}
-          renderView={this.state.renderView}
         />
         <h2 className="fitin-container-title">fit in</h2>
         <div className="fitin-container-tasks-circle">

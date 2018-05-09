@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
-import FocusTasksView from './views/focus-tasks-view';
+import FocusTasksView from '../../containers/focus-tasks-view';
 
 
 class FocusTasks extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      renderView: false
+  renderTasksView(event) {
+    let focusTasks = document.querySelector('.focus-container .focus-view');
+
+    if (!focusTasks.classList.contains('expanded-view')) {
+
+      focusTasks.classList.add('expanded-view');
+
+      setTimeout(() => {
+        document.getElementById('focus-task').focus();
+      }, 250);
+
     }
-
-  }
-
-  renderTasksView() {
-    this.setState({ renderView: true });
   }
 
 
   render() {
     return (
-      <div className="focus-container" onClick={this.renderTasksView.bind(this)}>
+      <div className="focus-container" onClick={this.renderTasksView}>
         <FocusTasksView
           tasks={this.props.tasks}
-          renderView={this.state.renderView}
         />
         <h2 className="focus-container-title">focus</h2>
         <div className="focus-container-tasks-circle">

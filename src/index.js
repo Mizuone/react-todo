@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
+import rootReducer from './reducers/index';
 
 import './index.css';
 import './scss/main.scss';
@@ -10,10 +11,11 @@ import NavigationTriggers from'./components/navigation/navigation_triggers/navig
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <App />
   </Provider>, document.getElementById('root'));
 registerServiceWorker();

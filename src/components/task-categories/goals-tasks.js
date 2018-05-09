@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
-import GoalsTasksView from './views/goals-tasks-view';
+import GoalsTasksView from '../../containers/goals-tasks-view';
 
 class GoalsTasks extends Component {
-  constructor(props) {
-    super(props);
+  renderTasksView(event) {
+    let goalsTasks = document.querySelector('.goals-container .goals-view');
 
-    this.state = {
-      renderView: false
+    if (!goalsTasks.classList.contains('expanded-view')) {
+
+      goalsTasks.classList.add('expanded-view');
+
+      setTimeout(() => {
+        document.getElementById('goals-task').focus();
+      }, 250);
+
     }
 
   }
 
-  renderTasksView() {
-    this.setState({ renderView: true });
-  }
-
   render() {
     return (
-      <div className="goals-container" onClick={this.renderTasksView.bind(this)}>
+      <div className="goals-container" onClick={this.renderTasksView}>
         <GoalsTasksView
           tasks={this.props.tasks}
-          renderView={this.state.renderView}
         />
         <h2 className="goals-container-title">goals</h2>
         <div className="goals-container-tasks-circle">

@@ -145,36 +145,37 @@ body,
       border-color: $focus-color-faded;
     }
 
-    & .focus-view {
+  }
 
-      & .row .col.task-field-container {
-          display: inline-block;
+  .focus-view, .fitin-view, .goals-view, .backburner-view {
 
-          & .validate {
+    & .row .col.task-field-container {
+        display: inline-block;
+
+        & .validate {
+          border-bottom: 1px solid $color-offwhite;
+          color: $color-offwhite;
+          box-shadow: none;
+
+          &:focus {
             border-bottom: 1px solid $color-offwhite;
-            color: $color-offwhite;
-            box-shadow: none;
-
-            &:focus {
-              border-bottom: 1px solid $color-offwhite;
-            }
           }
-
-          & > label {
-            color: $color-offwhite;
-          }
-      }
-
-      & .close-task-menu {
-        display: block;
-        margin: 1rem auto;
-        background-color: $color-offwhite;
-
-        & .material-icons {
-          color: #666;
         }
 
+        & > label {
+          color: $color-offwhite;
+        }
+    }
+
+    & .close-task-menu {
+      display: block;
+      margin: 1rem auto;
+      background-color: $color-offwhite;
+
+      & .material-icons {
+        color: #666;
       }
+
     }
   }
 

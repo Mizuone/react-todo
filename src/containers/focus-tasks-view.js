@@ -3,12 +3,16 @@ import React, { Component } from 'react';
 
 export default class FocusTasksView extends Component {
 
+  removeExpandedView(event) {
+    event.stopPropagation();
+
+    document.querySelector('.focus-view').classList.remove('expanded-view');
+  }
+
   render() {
 
-    const view = this.props.renderView ? 'focus-view expanded-view top-left' : 'focus-view collapsed-view top-left';
-
     return (
-      <div className={view}>
+      <div className='focus-view collapsed-view top-left'>
         <form>
           <div className="row">
             <div className="col s3"></div>
@@ -17,7 +21,7 @@ export default class FocusTasksView extends Component {
               <label for="focus-task">Task</label>
             </div>
             <div class="col s3">
-              <div className="btn-floating waves-effect waves-light close-task-menu">
+              <div onClick={this.removeExpandedView} className="btn-floating waves-effect waves-light close-task-menu">
                 <i className="material-icons">close</i>
               </div>
             </div>

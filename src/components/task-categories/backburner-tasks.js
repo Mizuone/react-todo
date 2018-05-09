@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
-import BackBurnerTasksView from './views/backburner-tasks-view';
+import BackBurnerTasksView from '../../containers/backburner-tasks-view';
 
 class BackBurnerTasks extends Component {
 
-  constructor(props) {
-    super(props);
+  renderTasksView(event) {
+    let backBurnerView = document.querySelector('.backburner-container .backburner-view');
 
-    this.state = {
-      renderView: false
+    if (!backBurnerView.classList.contains('expanded-view')) {
+
+      backBurnerView.classList.add('expanded-view');
+
+      setTimeout(() => {
+        document.getElementById('backburner-task').focus();
+      }, 250);
+
     }
 
-  }
-
-  renderTasksView() {
-    this.setState({ renderView: true });
   }
 
   render() {
 
     return (
-      <div className="backburner-container" onClick={this.renderTasksView.bind(this)}>
+      <div className="backburner-container" onClick={this.renderTasksView}>
         <BackBurnerTasksView
           tasks={this.props.tasks}
-          renderView={this.state.renderView}
         />
       <h2 className="backburner-container-title">backburner</h2>
         <div className="backburner-container-tasks-circle">
