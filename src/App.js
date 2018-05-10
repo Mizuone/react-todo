@@ -4,7 +4,7 @@ import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 
 import Navigation from './components/navigation/navigation';
-import TasksContainer from './containers/tasks-container';
+import TasksContainer from './components/tasks-container';
 
 
 class App extends Component {
