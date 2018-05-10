@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import addTask from '../actions/addtask';
+import deleteTask from '../actions/deletetask';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -9,13 +10,13 @@ class FitInTasks extends Component {
 
   renderTaskList() {
 
-    return this.props.fitintasks.map((task) => {
+    return this.props.fitintasks.map((task, index) => {
       return (
         <li class="collection-item">
           <div>
             {task}
-            <a href="#!" class="secondary-content"><i class="material-icons">delete</i></a>
-            <a href="#!" class="secondary-content"><i class="material-icons">edit</i></a>
+            <a onClick={() => this.props.deleteTask({index}, 'fitintasks')} href="#!" class="secondary-content"><i class="material-icons">delete</i></a>
+            <a href="#fitintasks-modal" class="secondary-content"><i class="material-icons modal-trigger">edit</i></a>
           </div>
         </li>
         )
@@ -47,6 +48,7 @@ class FitInTasks extends Component {
 
   render() {
     let input;
+    let inputEdit;
 
     return (
       <div className="fitin-container" onClick={this.renderTasksView}>
@@ -83,6 +85,29 @@ class FitInTasks extends Component {
             <p>to go</p>
           </div>
         </div>
+        <div id="fitintasks-modal" class="modal">
+          <div class="modal-content">
+            <h4>Edit Focus Task</h4>
+            <form onSubmit={
+              (event) => {
+                event.preventDefault()
+                if (!inputEdit.value.trim()) return
+
+                this.props.editTask(inputEdit.value, 'fitintasks');
+              }
+            }>
+              <div class="row">
+                <div className="input-field col s6 task-field-container">
+                  <input ref={node => inputEdit = node} id="fitin-task-edit" type="text" className="validate" />
+                  <label for="fitin-task-edit">Edit Task</label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
+        </div>
       </div>
     )
   }
@@ -96,7 +121,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addTask }, dispatch);
+  return bindActionCreators({ addTask, deleteTask }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FitInTasks);
