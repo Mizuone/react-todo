@@ -12,6 +12,10 @@ export default function (state = null, action = null) {
       newState.splice(action.taskindex, 1);
       fitinTaskArr = newState;
       return newState;
+    case action.type === 'EDIT_TASK' && action.category === 'fitintasks':
+      newState[action.taskindex] = action.task;
+      fitinTaskArr = newState;
+      return newState;
     default:
         return fitinTaskArr;
   }
