@@ -186,7 +186,7 @@ class TasksContainer extends Component {
                   },
                   container: {
                     mainContainerClass: 'backburner-container',
-                    taskViewContainerClass: 'backburner-view collapsed-view bottom-left',
+                    taskViewContainerClass: 'backburner-view collapsed-view bottom-right',
                     containerTitle: 'Backburner',
                     containerTitleClass: 'backburner-container-title',
                     containerTasksCircleClass: 'backburner-container-tasks-circle',

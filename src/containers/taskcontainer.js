@@ -16,7 +16,7 @@ class TaskContainer extends Component {
         <li class="collection-item">
           <div>
             {task}
-            <a onClick={(event) => { event.stopPropagation(); this.props.deleteTask({index}, this.props.DOMInformationObj.delete.category) }} href="#!" class="secondary-content"><i class="material-icons">delete</i></a>
+            <a onClick={(event) => { event.stopPropagation(); this.props.deleteTask(index, this.props.DOMInformationObj.delete.category) }} href="#!" class="secondary-content"><i class="material-icons">delete</i></a>
             <a onClick={this.editTaskClickEvent.bind(this)} href={this.props.DOMInformationObj.edit.iconAnchorHref} class="secondary-content"><i class="material-icons {this.props.DOMInformationObj.edit.iconClass}" data-task-index={index} onClick={
                 (event) => { event.stopPropagation; event.target.classList.add('editing') }
               }>edit</i></a>
