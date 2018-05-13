@@ -15,7 +15,16 @@ $breakpoint arguement choices:
 - tab-land
 */
 @mixin respond($breakpoint) {
+  @if $breakpoint == laptop {
+    @media (max-width: 75em) { @content };
+  }
   @if $breakpoint == nav-swap {
     @media (max-width: 62em) { @content };
+  }
+  @if $breakpoint == mobile-land {
+    @media (max-width: 38.5em) { @content };
+  }
+  @if $breakpoint == mobile {
+    @media (max-width: 34.37em) { @content };
   }
 }

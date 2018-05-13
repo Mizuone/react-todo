@@ -26,6 +26,11 @@ export default function (state = null, action = null) {
       fitinTaskArr = newState;
       LocalStorageManager.setLocalStorage('fitintasks', newState);
       return newState;
+    case action.type === 'DELETE_ALL':
+      newState = [];
+      fitinTaskArr = newState;
+      LocalStorageManager.setLocalStorage('fitintasks', newState);
+      return newState;
     default:
         return fitinTaskArr;
   }

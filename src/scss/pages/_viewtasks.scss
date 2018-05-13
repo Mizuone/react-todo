@@ -12,6 +12,12 @@ html,
 body,
 .todo-app-container {
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  @include respond(laptop) {
+    overflow-y: auto;
+  }
 }
 
 .todo-app-container {
@@ -26,14 +32,38 @@ body,
   position: relative;
   margin: auto;
 
+  @include respond(mobile-land) {
+    width: 100%;
+    height: 100%;
+  }
+
   & .divider-container {
     display: flex;
+
+    @include respond(mobile-land) {
+      width: 100%;
+      height: 49%;
+    }
+    @include respond(mobile) {
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+    }
+
 
     & > div {
       width: 300px;
       height: 400px;
       padding: 1rem;
       border: 1px solid rgba(0,0,0,0.06);
+
+      @include respond(mobile-land) {
+        width: 50%;
+        height: 100%;
+      }
+      @include respond(mobile) {
+        width: 100%;
+      }
     }
 
   }
@@ -68,6 +98,10 @@ body,
     margin: auto;
     background-color: #efefef;
     border: 1rem solid;
+
+    @include respond(mobile) {
+      width: 200px;
+    }
   }
 
   & a.btn-floating.btn-large.waves-effect.waves-light.light-blue,

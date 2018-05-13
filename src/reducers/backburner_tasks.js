@@ -27,6 +27,11 @@ export default function (state = null, action = null) {
       backBurnerTaskArr = newState;
       LocalStorageManager.setLocalStorage('backburnertasks', newState);
       return newState;
+    case action.type === 'DELETE_ALL':
+      newState = [];
+      backBurnerTaskArr = newState;
+      LocalStorageManager.setLocalStorage('backburnertasks', newState);
+      return newState;
     default:
         return backBurnerTaskArr;
   }

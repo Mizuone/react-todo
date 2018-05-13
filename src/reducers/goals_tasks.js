@@ -26,6 +26,11 @@ export default function (state = null, action = null) {
       goalsTaskArr = newState;
       LocalStorageManager.setLocalStorage('goalstasks', newState);
       return newState;
+    case action.type === 'DELETE_ALL':
+      newState = [];
+      goalsTaskArr = newState;
+      LocalStorageManager.setLocalStorage('goalstasks', newState);
+      return newState;
     default:
         return goalsTaskArr;
   }

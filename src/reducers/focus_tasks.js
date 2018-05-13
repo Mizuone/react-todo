@@ -26,6 +26,11 @@ export default function (state = null, action = null) {
       focusTaskArr = newState;
       LocalStorageManager.setLocalStorage('focustasks', newState);
       return newState;
+    case action.type === 'DELETE_ALL':
+      newState = [];
+      focusTaskArr = newState;
+      LocalStorageManager.setLocalStorage('focustasks', newState);
+      return newState;
     default:
       return focusTaskArr;
   }
