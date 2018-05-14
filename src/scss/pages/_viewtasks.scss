@@ -13,11 +13,6 @@ body,
 .todo-app-container {
   width: 100%;
   overflow-x: hidden;
-  overflow-y: hidden;
-
-  @include respond(laptop) {
-    overflow-y: auto;
-  }
 }
 
 .todo-app-container {
@@ -101,6 +96,9 @@ body,
 
     @include respond(mobile) {
       width: 200px;
+    }
+    @include respond(tiny) {
+      width: 175px;
     }
   }
 
@@ -247,5 +245,58 @@ body,
     & .backburner-container-tasks-circle {
       border-color: $backburner-color-faded;
     }
+  }
+}
+
+.mobile-add-task-container {
+  display: none;
+
+  @include respond(nav-swap) {
+    display: block;
+  }
+}
+
+.secondary-content.task-edit-icon {
+  margin-right: 1rem;
+  color: $fitin-color;
+}
+.secondary-content.task-delete-icon {
+  color: $focus-color;
+}
+
+#input-addtask:focus,
+#focus-task-edit:focus,
+#goals-task-edit:focus,
+#fitin-task-edit:focus,
+#backburner-task-edit:focus {
+  box-shadow: 0 1px 0 0 $color-primary;
+  border-bottom: 1px solid $color-primary;
+}
+#input-addtask:focus + label,
+#focus-task-edit:focus + label,
+#goals-task-edit:focus + label,
+#fitin-task-edit:focus + label,
+#backburner-task-edit:focus + label {
+  color: $color-primary;
+}
+
+#input-addtask.valid:not(.browser-default),
+#focus-task-edit.valid:not(.browser-default),
+#goals-task-edit.valid:not(.browser-default),
+#fitin-task-edit.valid:not(.browser-default),
+#backburner-task-edit.valid:not(.browser-default) {
+  box-shadow: 0 1px 0 0 $color-primary;
+  border-bottom: 1px solid $color-primary;
+}
+
+.modal-addtask-class {
+
+  & [type="radio"]:checked+span:before {
+    background-color: $addtask-radio-lightblue;
+    border-color: $addtask-radio-lightblue;
+  }
+  & [type="radio"]:checked+span:after {
+    background-color: $color-primary;
+    border-color: $color-primary;
   }
 }

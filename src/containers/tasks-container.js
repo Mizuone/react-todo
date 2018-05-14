@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
+import addTask from '../actions/addtask';
 import { connect } from 'react-redux';
 import TaskContainer from './taskcontainer';
+import { bindActionCreators } from 'redux';
+import M from 'materialize-css/dist/js/materialize.js';
 
 class TasksContainer extends Component {
+
+  editTaskClickEvent() {
+
+      let modal = document.getElementById('modal-addtask');
+      let input = document.getElementById('input-addtask');
+      let instance = M.Modal.init(modal, {});
+
+      instance.open();
+
+      setTimeout(() => {
+        input.focus();
+      }, 150)
+
+  }
+
     render() {
+      let inputAdd;
+
       return(
         <div className="tasks-main-container">
           <div className="divider-container">
@@ -12,7 +32,7 @@ class TasksContainer extends Component {
                 {
                   edit: {
                     iconAnchorHref: '#focustasks-modal-id',
-                    iconClass: 'focustasks-edit',
+                    iconClass: 'material-icons focustasks-edit',
                     category: 'focustasks'
                   },
                   delete: {
@@ -62,7 +82,7 @@ class TasksContainer extends Component {
                 {
                   edit: {
                     iconAnchorHref: '#goalstasks-modal-id',
-                    iconClass: 'goalstasks-edit',
+                    iconClass: 'material-icons goalstasks-edit',
                     category: 'goalstasks'
                   },
                   delete: {
@@ -114,7 +134,7 @@ class TasksContainer extends Component {
                 {
                   edit: {
                     iconAnchorHref: '#fitintasks-modal-id',
-                    iconClass: 'fitintasks-edit',
+                    iconClass: 'material-icons fitintasks-edit',
                     category: 'fitintasks'
                   },
                   delete: {
@@ -164,7 +184,7 @@ class TasksContainer extends Component {
                 {
                   edit: {
                     iconAnchorHref: '#backburnertasks-modal-id',
-                    iconClass: 'backburnertasks-edit',
+                    iconClass: 'material-icons backburnertasks-edit',
                     category: 'backburnertasks'
                   },
                   delete: {
@@ -210,6 +230,68 @@ class TasksContainer extends Component {
               }
             />
           </div>
+          <div class="fixed-action-btn mobile-add-task-container">
+            <a onClick={this.editTaskClickEvent} href="#modal-addtask" class="btn-floating btn-large light-blue mobile-add-task-link">
+              <i class="large material-icons">add</i>
+            </a>
+          </div>
+
+          <div id="modal-addtask" class="modal modal-addtask-class">
+            <div class="modal-content">
+              <h4>Add Task</h4>
+              <form onSubmit={(event) => {
+                  event.preventDefault();
+                  let selectedRadio = document.querySelector('.addtask-radio > input:checked');
+
+                  if (!inputAdd.value.trim() || !selectedRadio) return;
+
+                  this.props.addTask(inputAdd.value, selectedRadio.value);
+                  inputAdd.value = '';
+                  document.querySelector('.modal-addtask-close').click();
+                }}>
+                <div class="row">
+                  <div className="input-field col s6 task-field-container">
+                    <input ref={node => inputAdd = node} id="input-addtask" type="text" className="validate" />
+                    <label for="input-addtask">Edit Task</label>
+                  </div>
+                </div>
+                <p>
+                  <label className="addtask-radio">
+                    <input name="group1" type="radio" value="focustasks" />
+                    <span>Focus</span>
+                  </label>
+                </p>
+                <p>
+                  <label className="addtask-radio">
+                    <input name="group1" type="radio" value="goalstasks" />
+                    <span>Goals</span>
+                  </label>
+                </p>
+                <p>
+                  <label className="addtask-radio">
+                    <input name="group1" type="radio" value="fitintasks" />
+                    <span>Fit In</span>
+                  </label>
+                </p>
+                <p>
+                  <label className="addtask-radio">
+                    <input name="group1" type="radio" value="backburnertasks" />
+                    <span>Backburner</span>
+                  </label>
+                </p>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <a onClick={() => {
+                let selectedRadio = document.querySelector('.addtask-radio > input:checked');
+
+                if (!inputAdd.value || !selectedRadio) return;
+
+                this.props.addTask(inputAdd.value, selectedRadio.value);
+                inputAdd.value = '';
+                }} href="#!" class="modal-addtask-close modal-close waves-effect waves-green btn-flat">Add Task</a>
+            </div>
+          </div>
         </div>
       );
     }
@@ -224,4 +306,8 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(TasksContainer);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ addTask }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TasksContainer);

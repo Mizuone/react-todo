@@ -16,9 +16,9 @@ class TaskContainer extends Component {
         <li class="collection-item">
           <div>
             {task}
-            <a onClick={(event) => { event.stopPropagation(); this.props.deleteTask(index, this.props.DOMInformationObj.delete.category) }} href="#!" class="secondary-content"><i class="material-icons">delete</i></a>
-            <a onClick={this.editTaskClickEvent.bind(this)} href={this.props.DOMInformationObj.edit.iconAnchorHref} class="secondary-content"><i class="material-icons {this.props.DOMInformationObj.edit.iconClass}" data-task-index={index} onClick={
-                (event) => { event.stopPropagation; event.target.classList.add('editing') }
+            <a onClick={(event) => { event.stopPropagation(); this.props.deleteTask(index, this.props.DOMInformationObj.delete.category) }} href="#!" class="secondary-content task-delete-icon"><i class="material-icons">delete</i></a>
+            <a onClick={this.editTaskClickEvent.bind(this)} href={this.props.DOMInformationObj.edit.iconAnchorHref} class="secondary-content task-edit-icon"><i class={this.props.DOMInformationObj.edit.iconClass} data-task-index={index} onClick={
+                (event) => { event.stopPropagation; this.clearAllEditingClasses(); event.target.classList.add('editing');  }
               }>edit</i></a>
           </div>
         </li>
@@ -61,13 +61,35 @@ class TaskContainer extends Component {
 
     document.querySelector(this.props.DOMInformationObj.funcremoveExpandedView.taskView).classList.remove('expanded-view');
   }
+
   removeEditingClass() {
     document.querySelector('.editing').classList.remove('editing');
   }
 
-  getEditTaskIndex() {
-    return document.querySelector('.editing').getAttribute('data-task-index');
+  clearAllEditingClasses() {
+    let editingElements = document.querySelectorAll('.editing');
+
+    if (editingElements.length) {
+
+      editingElements.forEach((editElement) => {
+        editElement.classList.remove('editing');
+      });
+
+    }
+
   }
+
+  getEditTaskIndex() {
+    let editingElement = document.querySelector('.editing');
+
+    if (editingElement) {
+      return editingElement.getAttribute('data-task-index');
+    }
+
+    return 0;
+  }
+
+
 
 
   render() {
@@ -80,6 +102,8 @@ class TaskContainer extends Component {
           <form onSubmit={event => { event.preventDefault()
               if (!input.value) return
               this.props.addTask(input.value, this.props.DOMInformationObj.add.category);
+
+              input.value = '';
           }}>
             <div className="row">
               <div className="col s3"></div>
@@ -125,7 +149,7 @@ class TaskContainer extends Component {
             }>
               <div class="row">
                 <div className="input-field col s6 task-field-container">
-                  <input ref={node => inputEdit = node} id={this.props.DOMInformationObj.modal.modalInputId} type="text" className="validate" />
+                  <input ref={node => inputEdit = node} id={this.props.DOMInformationObj.modal.modalInputId} defaultValue={this.props.tasks[this.getEditTaskIndex()]} type="text" className="validate" />
                   <label for={this.props.DOMInformationObj.modal.modalInputId}>Edit Task</label>
                 </div>
               </div>

@@ -27,4 +27,7 @@ $breakpoint arguement choices:
   @if $breakpoint == mobile {
     @media (max-width: 34.37em) { @content };
   }
+  @if $breakpoint == tiny {
+    @media (max-width: 21.25em) { @content };
+  }
 }

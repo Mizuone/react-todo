@@ -6,9 +6,18 @@ class NavigationTriggers {
     let sideNav = document.querySelector('.sidenav');
     let instance = M.Sidenav.init(sideNav, { edge: 'left' });
 
-    document.querySelector('.sidenav-arrow').addEventListener('click', () => {
-      instance.close();
-    });
+    if (window.innerWidth <= 992) {
+
+      document.querySelectorAll('.sidenav-arrow, .sidenav-fixed > li > a').forEach((clickElement) => {
+
+        clickElement.addEventListener('click', (event) => {
+          instance.close();
+        });
+
+      });
+
+    }
+
   }
 
   static dropDownMenuOpenEvent() {
