@@ -15,8 +15,8 @@ class App extends Component {
       <div className="todo-app-container">
         <Navigation />
         <Switch>
-          <Route exact path='/' component={TasksContainer}/>
-          <Route exact path='/about' component={About}/>
+          <Route path="/projects/to-do-list/index.html" component={TasksContainer}/>
+          <Route path="/projects/to-do-list/about" component={About}/>
         </Switch>
       </div>
     );

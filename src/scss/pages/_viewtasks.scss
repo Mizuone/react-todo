@@ -38,6 +38,7 @@ body,
     @include respond(mobile-land) {
       width: 100%;
       height: 49%;
+      min-height: 668px;
     }
     @include respond(mobile) {
       flex-direction: column;
@@ -55,6 +56,8 @@ body,
       @include respond(mobile-land) {
         width: 50%;
         height: 100%;
+        min-height: 334px;
+        position: relative;
       }
       @include respond(mobile) {
         width: 100%;
@@ -67,7 +70,7 @@ body,
   & .goals-container,
   & .fitin-container,
   & .backburner-container {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease;
     cursor: pointer;
   }
 
@@ -132,7 +135,7 @@ body,
   & .collapsed-view, .expanded-view {
     position: absolute;
     z-index: 5;
-    transition: 0.4s all ease-in-out;
+    transition: 0.4s all ease;
   }
 
   & .collapsed-view {
@@ -147,6 +150,11 @@ body,
     height: 100%;
     visibility: visible;
     opacity: 1;
+
+    @include respond(mobile-land) {
+      overflow: scroll;
+    }
+
   }
 
   & .focus-view {
@@ -248,8 +256,11 @@ body,
   }
 }
 
-.mobile-add-task-container {
+
+
+.fixed-action-btn.mobile-add-task-container {
   display: none;
+  z-index: 1;
 
   @include respond(nav-swap) {
     display: block;
