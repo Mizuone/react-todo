@@ -15,10 +15,11 @@ class TasksContainer extends Component {
 
       instance.open();
 
-      setTimeout(() => {
-        input.focus();
-      }, 150)
-
+      if (window.innerWidth > 992) {
+        setTimeout(() => {
+          input.focus();
+        }, 150)
+      }
   }
 
     render() {
@@ -230,14 +231,14 @@ class TasksContainer extends Component {
               }
             />
           </div>
-          <div class="fixed-action-btn mobile-add-task-container">
-            <a onClick={this.editTaskClickEvent} href="#modal-addtask" class="btn-floating btn-large light-blue mobile-add-task-link">
-              <i class="large material-icons">add</i>
+          <div className="fixed-action-btn mobile-add-task-container">
+            <a onClick={this.editTaskClickEvent} href="#modal-addtask" className="btn-floating btn-large light-blue mobile-add-task-link">
+              <i className="large material-icons">add</i>
             </a>
           </div>
 
-          <div id="modal-addtask" class="modal modal-addtask-class">
-            <div class="modal-content">
+          <div id="modal-addtask" className="modal modal-addtask-class">
+            <div className="modal-content">
               <h4>Add Task</h4>
               <form onSubmit={(event) => {
                   event.preventDefault();
@@ -249,10 +250,10 @@ class TasksContainer extends Component {
                   inputAdd.value = '';
                   document.querySelector('.modal-addtask-close').click();
                 }}>
-                <div class="row">
+                <div className="row">
                   <div className="input-field col s6 task-field-container">
                     <input ref={node => inputAdd = node} id="input-addtask" type="text" className="validate" />
-                    <label for="input-addtask">Edit Task</label>
+                    <label htmlFor="input-addtask">Edit Task</label>
                   </div>
                 </div>
                 <p>
@@ -281,7 +282,7 @@ class TasksContainer extends Component {
                 </p>
               </form>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <a onClick={() => {
                 let selectedRadio = document.querySelector('.addtask-radio > input:checked');
 
@@ -289,7 +290,7 @@ class TasksContainer extends Component {
 
                 this.props.addTask(inputAdd.value, selectedRadio.value);
                 inputAdd.value = '';
-                }} href="#!" class="modal-addtask-close modal-close waves-effect waves-green btn-flat">Add Task</a>
+                }} href="#!" className="modal-addtask-close modal-close waves-effect waves-green btn-flat">Add Task</a>
             </div>
           </div>
         </div>

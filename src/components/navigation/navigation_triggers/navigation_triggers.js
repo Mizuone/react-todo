@@ -22,7 +22,7 @@ class NavigationTriggers {
 
   static dropDownMenuOpenEvent() {
     let dropDown = document.querySelector('.dropdown-trigger');
-    let instance = M.Dropdown.init(dropDown, {});
+    M.Dropdown.init(dropDown, {});
   }
 
 }

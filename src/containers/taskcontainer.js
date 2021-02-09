@@ -6,20 +6,23 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.js';
 
-
 class TaskContainer extends Component {
 
   renderTaskList() {
 
     return this.props.tasks.map((task, index) => {
       return (
-        <li class="collection-item">
+        <li key={index} className="collection-item">
           <div>
             {task}
-            <a onClick={(event) => { event.stopPropagation(); this.props.deleteTask(index, this.props.DOMInformationObj.delete.category) }} href="#!" class="secondary-content task-delete-icon"><i class="material-icons">delete</i></a>
-            <a onClick={this.editTaskClickEvent.bind(this)} href={this.props.DOMInformationObj.edit.iconAnchorHref} class="secondary-content task-edit-icon"><i class={this.props.DOMInformationObj.edit.iconClass} data-task-index={index} onClick={
-                (event) => { event.stopPropagation; this.clearAllEditingClasses(); event.target.classList.add('editing');  }
-              }>edit</i></a>
+            <a onClick={(event) => { event.stopPropagation(); this.props.deleteTask(index, this.props.DOMInformationObj.delete.category) }} href="#!" className="secondary-content task-delete-icon"><i className="material-icons">delete</i></a>
+            <a onClick={this.editTaskClickEvent.bind(this)} href={this.props.DOMInformationObj.edit.iconAnchorHref} className="secondary-content task-edit-icon"><i className={this.props.DOMInformationObj.edit.iconClass} data-task-index={index} onClick={
+                (event) => {
+                  this.clearAllEditingClasses();
+                  event.target.classList.add('editing');
+                  this.setEditInputField(index);
+                }
+                }>edit</i></a>
           </div>
         </li>
         )
@@ -34,9 +37,11 @@ class TaskContainer extends Component {
 
       tasksView.classList.add('expanded-view');
 
-      setTimeout(() => {
-        document.getElementById(this.props.DOMInformationObj.funcrenderTaskView.taskViewInputFocus).focus();
-      }, 250);
+      if (window.innerWidth > 992) {
+        setTimeout(() => {
+          document.getElementById(this.props.DOMInformationObj.funcrenderTaskView.taskViewInputFocus).focus();
+        }, 250);
+      }
 
     }
 
@@ -52,8 +57,11 @@ class TaskContainer extends Component {
 
       setTimeout(() => {
         input.focus();
-      }, 150)
+      }, 150);
+  }
 
+  setEditInputField(index) {
+    document.getElementById(this.props.DOMInformationObj.modal.modalInputId).value = this.props.tasks[index];
   }
 
   removeExpandedView(event) {
@@ -82,6 +90,7 @@ class TaskContainer extends Component {
   getEditTaskIndex() {
     let editingElement = document.querySelector('.editing');
 
+
     if (editingElement) {
       return editingElement.getAttribute('data-task-index');
     }
@@ -109,9 +118,9 @@ class TaskContainer extends Component {
               <div className="col s3"></div>
               <div className="input-field col s6 task-field-container">
                 <input ref={node => input = node} id={this.props.DOMInformationObj.view.inputId} type="text" className="validate" />
-                <label for={this.props.DOMInformationObj.view.inputId}>Task</label>
+                <label htmlFor={this.props.DOMInformationObj.view.inputId}>Task</label>
               </div>
-              <div class="col s3">
+              <div className="col s3">
                 <div onClick={this.removeExpandedView.bind(this)} className="btn-floating waves-effect waves-light close-task-menu">
                   <i className="material-icons">close</i>
                 </div>
@@ -120,8 +129,8 @@ class TaskContainer extends Component {
             </div>
           </form>
 
-          <ul class="collection with-header">
-            <li class="collection-header"><h4>{this.props.DOMInformationObj.view.viewTasksTitle}</h4></li>
+          <ul className="collection with-header">
+            <li className="collection-header"><h4>{this.props.DOMInformationObj.view.viewTasksTitle}</h4></li>
             {this.renderTaskList()}
           </ul>
 
@@ -133,8 +142,8 @@ class TaskContainer extends Component {
             <p>to go</p>
           </div>
         </div>
-        <div id={this.props.DOMInformationObj.modal.modalIdContainer} class={this.props.DOMInformationObj.modal.modalContainerClass}>
-          <div class="modal-content">
+        <div id={this.props.DOMInformationObj.modal.modalIdContainer} className={this.props.DOMInformationObj.modal.modalContainerClass}>
+          <div className="modal-content">
             <h4>{this.props.DOMInformationObj.modal.modalContainerTitle}</h4>
             <form onSubmit={
               (event) => {
@@ -147,16 +156,16 @@ class TaskContainer extends Component {
                 document.querySelector(this.props.DOMInformationObj.modal.modalCloseClickSelector).click();
               }
             }>
-              <div class="row">
+              <div className="row">
                 <div className="input-field col s6 task-field-container">
-                  <input ref={node => inputEdit = node} id={this.props.DOMInformationObj.modal.modalInputId} defaultValue={this.props.tasks[this.getEditTaskIndex()]} type="text" className="validate" />
-                  <label for={this.props.DOMInformationObj.modal.modalInputId}>Edit Task</label>
+                  <input ref={node => inputEdit = node} id={this.props.DOMInformationObj.modal.modalInputId} type="text" className="validate" />
+                  <label htmlFor={this.props.DOMInformationObj.modal.modalInputId}>Edit Task</label>
                 </div>
               </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat" onClick={(event) => {
+          <div className="modal-footer">
+            <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={(event) => {
                 event.stopPropagation();
                 if (!inputEdit.value.trim()) return
 
